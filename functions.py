@@ -22,7 +22,7 @@ def jsonparser(files):  # Функция получения данных из js
             object_list.append(sales)
     return object_list
 
-def get_information_sale_book(connection ,publish:dict) -> str: # функция получения информации из БД (в соответствии с заданием)
+def get_information_sale_book(connection ,publish:dict) -> str: # функция получения информации из БД (в соответствии с заданием), на вход принимает:сессию для подключения и словарь(параметр(id или name): значение параметра)
     query = connection.query(Book.title, Shop.name, Sale.price, Sale.date_sale).join(Publisher).join(Stock).join(Shop).join(Sale)
     if publish.keys() == 'name':
         query = query.filter(Publisher.name == publish['name'])
