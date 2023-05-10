@@ -24,11 +24,17 @@ def jsonparser(files):  # Функция получения данных из js
 
 def get_information_sale_book(connection ,publish:dict) -> str: # функция получения информации из БД (в соответствии с заданием), на вход принимает:сессию для подключения и словарь(параметр(id или name): значение параметра)
     query = connection.query(Book.title, Shop.name, Sale.price, Sale.date_sale).join(Publisher).join(Stock).join(Shop).join(Sale)
-    if publish.keys() == 'name':
+    if "name" in publish:
         query = query.filter(Publisher.name == publish['name'])
-    elif publish.keys() == 'id':
+        return query.all()
+    elif 'id' in publish:
         query = query.filter(Publisher.id == publish['id'])
-    return query.all()
+        return query.all()
+    else:
+        print('Нет такого параметра для поиска издателя. Введите "id" либо "name".')
+        return [(0,0,0,0)]
+        
+
     
 
 

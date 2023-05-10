@@ -16,7 +16,7 @@ if __name__ == '__main__':
     session = Session() #создание эекземпляра сессии
     session.add_all(jsonparser('text_file.json')) # заполнение таблицы данными из на основе функции jsonparser модуля funktions
     print(f'               название книги            |название магазина| стоимость покупки|      дата покупки') # вывод результатов запроса
-    for title, name, price, date_sale in get_information_sale_book(session, {'name':'Pearson'}):  #на основе функции get_information_sale_book модуля funktions
+    for title, name, price, date_sale in get_information_sale_book(session, {"id": 1}):  #на основе функции get_information_sale_book модуля funktions
         print(f'{title:<40} | {name:<15} | {price:<16} | {date_sale}')
     session.commit()
     session.close()
