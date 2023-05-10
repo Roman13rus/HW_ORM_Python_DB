@@ -1,0 +1,4 @@
+sqlalchemy
+os
+dotenv
+json
